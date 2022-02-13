@@ -6,18 +6,18 @@ import kong.unirest.Unirest;
 import org.testng.annotations.Test;
 
 
-public class HERE_LOCATION {
+public class HERE_LOCATION_ERROR {
 
     @Test
-    public void mainTestCaseFlow() {
+    public void Unauthorized() {
 
         String baseUrl = "https://geocoder.ls.hereapi.com/6.2/geocode.json";
-        String apiKey = "kUVU9QEEEoqsNTUOVDlh1S69vYKqMwOMG5cfRY-Do7Q";
         String addressParameters = "&housenumber=425&street=randolph&city=chicago&country=usa";
 
-        HttpResponse<JsonNode> jsonResponse = Unirest.get(baseUrl + "?apiKey=" + apiKey + addressParameters).asJson();
+        HttpResponse<JsonNode> jsonResponse = Unirest.get(baseUrl + addressParameters).asJson();
 
         org.junit.Assert.assertNotNull(jsonResponse);
+        org.junit.Assert.assertEquals("Unauthorized", jsonResponse.getBody().getObject().get("error"));
 
         System.out.println(jsonResponse.getStatus());
         System.out.println(jsonResponse.getBody().toPrettyString());

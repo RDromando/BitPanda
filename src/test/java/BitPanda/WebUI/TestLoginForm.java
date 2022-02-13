@@ -13,7 +13,7 @@ public class TestLoginForm extends TestMethods {
     }
 
     @Test
-    public void mainTestCase() throws InterruptedException {
+    public void mainTestCase() {
         login();
     }
 
